@@ -1,9 +1,15 @@
 const { response } = require('express')
 const express = require('express')
 const uuid = require('uuid')
-const port = 3000
-const app = express()
-app.use(express.json())
+import cors from 'cors'
+
+//import express from "express";
+//import { v4 } from "uuid";
+
+const port = 3001
+const app = express();
+app.use(express.json());
+app.use(cors())
 
 const users = []
 
