@@ -1,15 +1,13 @@
-const { response } = require('express')
-const express = require('express')
-const uuid = require('uuid')
+import express from'express'
+import {v4} from 'uuid'
 import cors from 'cors'
-
-//import express from "express";
-//import { v4 } from "uuid";
 
 const port = 3001
 const app = express();
 app.use(express.json());
-app.use(cors())
+//app.use(cors())
+//const cors = require('cors');
+app.use(cors());
 
 const users = []
 
@@ -31,7 +29,7 @@ app.get('/users', (request, response) => {
 app.post('/users', (request, response) => {
     const { name, age } = request.body
 
-    const user = { id: uuid.v4(), name, age }
+    const user = { id:v4(), name, age }
     users.push(user)
     return response.status(201).json(user)
 })
@@ -58,5 +56,5 @@ app.delete('/users/:id', checkUserId, (request, response) => {
 
 
 app.listen(port, () => {
-    console.log('✈⚡Server started on port $(port)')
+    console.log(`✈⚡Server started on port ${port}`)
 })
